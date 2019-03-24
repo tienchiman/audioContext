@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TEST AMR</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+            background: #f3f8ff;
+            padding: 0 30px;
+        }
+        .audo-list {
+            margin: 20px 0;
+            width: 400px;
+            padding: 0 30px;
+            background-color: rgb(227, 231, 179);
+            border-radius: 5px;
+        }
+
+        .name {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #665c84;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            margin: 10px 0;
+            background: #0f0a3c;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress-bar .bar {
+            display: block;
+            width: 100%;
+            height: 6px;
+            background: #009f9d;
+        }
+
+        .progress-bar .bar[status="stop"] {
+            background: #d84c73;
+        }
+
+        .progress-bar .bar[status="play"] {
+            background: #a0edf7;
+        }
+
+        .btn-list {
+            width: 100%;
+            display: flex;
+            padding: 10px 0;
+        }
+        .btn-list .btn{
+            flex: 1;
+            margin: 0 30px;
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            outline: none;
+            border: none;
+            background: #6effbf;
+            text-align: center;
+            font-size: 16px;
+            color: #35234b;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .btn-list[status="stop"] .stop,
+        .btn-list[status="play"] .play{
+            cursor: not-allowed;
+            background: #c6cfff;
+            opacity: 0.3;
+        }
+
+    </style>
+</head>
+<body>
+
+<ul class="content-list" id="app">
+    <div class="audo-list" data-index="$index" id="list-item-$index" duration="0" time="[duration]">
+        <!--前面的 name= 这个name 是在data中的一个属性值, [content] 这个是元素的的属性名-->
+        <div class="name">$name</div>
+        <div class="progress-bar"><span class="bar" style="width: 0%;" status="stop" state="[status]" progress="[style.width]"></span></div>
+        <div class="btn-list" status="stop" state="[status]"  path="$url">
+            <button class="btn play"  data-index="$index" click data-handle="play" >PLAY</button>
+            <button class="btn stop"  data-index="$index" click data-handle="stop">STOP</button>
+        </div>
+    </div>
+</ul>
+<!--<ul class="content-list" id="app">-->
+    <!--<div class="audo-list">-->
+        <!--<div class="name" name="name">录音视频</div>-->
+        <!--<div class="progress-bar" name="bar"><span class="bar" style="width: 60%;" status="stop" name="progress"></span></div>-->
+        <!--<div class="btn-list" status="play" name="btn">-->
+            <!--<button class="btn play" name="play">PLAY</button>-->
+            <!--<button class="btn stop" name="stop">STOP</button>-->
+        <!--</div>-->
+    <!--</div>-->
+
+<!--</ul>-->
+
+<script src="./static/js/amrnb.js"></script>
+<script src="./static/js/axios.min.js"></script>
+<script src="./static/js/jquery-3.3.1.js"></script>
+<script type="text/javascript" id="script">
+    document.write("<script src='./static/js/testAmr.js?version=e"+ (+new Date())+"'><\/script>");
+    document.body.removeChild(document.getElementById('script'))
+</script>
+<!--<script src="./static/js/testAmr.js?version=0.1" id="script"></script>-->
+</body>
+</html>
